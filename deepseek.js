@@ -1,7 +1,7 @@
 /* created by lang
 *depsek depsek an katanya*
 package: axios
-usage: ai('your msg')
+usage: deepseek('your msg')
 */
 
 const axios = require('axios')

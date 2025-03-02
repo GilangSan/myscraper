@@ -12,8 +12,8 @@ const cheerio = require('cheerio')
 async function redirectDetective(url) {
     let formData = new FormData()
     formData.append('w', url)
-    let { data } = await axios.post('https://redirectdetective.com/ld.px', formData, {
     formData.append('f', false)
+    let { data } = await axios.post('https://redirectdetective.com/ld.px', formData, {
         headers: {
             "content-type": "application/x-www-form-urlencoded",
             "origin": "https://redirectdetective.com",

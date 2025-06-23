@@ -6,5 +6,7 @@ request scraper at issues tab
 
 
 New Spotify API:
+```js
 Search: https://song-teleservice.vercel.app/spotify/search?q=time&limit=20
 Download: https://song-teleservice.vercel.app/spotify/search?url=
+```

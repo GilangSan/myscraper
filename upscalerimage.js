@@ -1,5 +1,10 @@
+/**
+ * ImageUpscaler from lang
+ * package: axios
+ * usage at bottom
+ */
+
 const axios = require('axios')
-const fs = require('fs')
 
 function generateId(length = 11) {
     let id = '';
@@ -77,8 +82,10 @@ async function upscale(image) {
     return parseEventStream(res.data)
 }
 
+/* usage
 (async () => {
     let image = fs.readFileSync('./960x0.webp') // bisa url juga..
     let res = await upscale(image)
-    console.log(res[0].output.data[0])
+    console.log(res[0].output.data[0][1].url)
 })()
+*/

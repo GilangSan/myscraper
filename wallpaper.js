@@ -123,6 +123,7 @@ class Wallpaper {
 (async () => {
     let wpp = new Wallpaper()
     let res = await wpp.main('popular') // popular, featured, random, collection or leave it blank
+    // let res = await app.search('something')
     // let res = await wpp.download('https://4kwallpapers.com/cars/nissan-skyline-gt-r-14666.html')
     console.log(res)
 })() */

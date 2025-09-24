@@ -1,3 +1,10 @@
+/**
+ * Zoner AI by lang
+ * package: axios, https
+ * my channel: https://www.whatsapp.com/channel/0029VafnytH2kNFsEp5R8Q3n
+ * usage at bottom
+ */
+
 const axios = require('axios');
 const https = require('https');
 
@@ -73,4 +80,5 @@ class Zonerai {
     let buffer = await zonerai.text2img('A beautiful sunset over the mountains')
     require('fs').writeFileSync('sunset.png', buffer);
     console.log(await zonerai.img2txt(buffer));
+
 })()

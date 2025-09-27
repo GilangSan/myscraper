@@ -8,9 +8,9 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
 
-async function getUpdate() {
+async function getUpdate(date = new Date().toISOString().split('T')[0]) {
     try {
-        let { data } = await axios.get('https://www.livechart.me/schedule')
+        let { data } = await axios.get(`https://www.livechart.me/schedule?date=${date}`)
         const $ = cheerio.load(data)
         const lc = $('.lc-timetable')
         let result = []
@@ -33,6 +33,6 @@ async function getUpdate() {
 }
 
 (async () => {
-    let update = await getUpdate()
+    let update = await getUpdate('2025-10-01') // format: YYYY-MM-DD or blank for today
     console.log(update)
 })()

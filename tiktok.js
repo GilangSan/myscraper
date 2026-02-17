@@ -1,22 +1,39 @@
-// ya referer juga boleh la
+/**
+ * Tiktok Download
+ * @author lang
+ * @function tiktok(url: string)
+ */
 
-const axios = require("axios")
+const axios = require('axios')
 
-const tiktokRegex = /^(https?:\/\/)?(www\.)?(tiktok\.com|vt\.tiktok\.com|m\.tiktok\.com)\//
-
-async function ttdl (url) {
-    if (!tiktokRegex.test(url)) return 'Invalid URL'
-    const res = await axios.post(`https://tikmate.netlify.app/api/download`, {
-        "url": url,
-        }, {
+async function getCsrf() {
+    const res = await (await axios.get('https://snapixels.com/api/download/get_csrf_token', {
         headers: {
-        "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36",
-        "Referer": "https://tikmate.netlify.app/",
-        "Origin": "https://tikmate.netlify.app/"
-                 }}
-                                )
-    return res.data.data
-    }
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0"
+        }
+    })).data
+    return res.token
+}
 
-module.exports = { ttdl }
+async function tiktok(url) {
+    if (!url) return 'url parameter is required!'
+    const token = await getCsrf()
+    const res = await (await axios.post('https://snapixels.com/api/download/fetch', {
+        url,
+        "csrf_token_tiktok": token
+    }, {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            cookie: `csrf_cookie_tiktok=${token}; site_lang=en`,
+            origin: "https://snapixels.com",
+            referer: "https://snapixels.com/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0"
+        }
+    })).data
+    return res
+}
+
+// example
+(async () => {
+    console.log(await tiktok('https://www.tiktok.com/@febryansydney/video/7606265077242547476?is_from_webapp=1&sender_device=pc'))
+})()

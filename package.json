@@ -1,0 +1,29 @@
+{
+  "name": "myscraper",
+  "version": "1.0.0",
+  "description": "Kumpulan scraper reverse-engineered untuk belajar/riset: downloader medsos, AI chat, image tools, stalking publik, berita, anime, dan lain-lain.",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node scripts/check.js"
+  },
+  "keywords": [
+    "scraper",
+    "downloader",
+    "reverse-engineering",
+    "api"
+  ],
+  "author": "GilangSan",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0",
+    "crypto-js": "^4.2.0",
+    "tough-cookie": "^5.0.0",
+    "axios-cookiejar-support": "^5.0.0",
+    "canvas": "^2.11.2",
+    "bycf": "latest"
+  }
+}

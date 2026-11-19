@@ -12,8 +12,8 @@ const cheerio = require('cheerio')
 async function tiktok(url) {
   let form = new URLSearchParams()
   form.append('q', url)
-  let { data } = await axios.post(`https://tiksave.io/api/ajaxSearch`, form, {
   form.append('lang', 'id')
+  let { data } = await axios.post(`https://tiksave.io/api/ajaxSearch`, form, {
     headers: {
       'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
       'origin': 'https://tiksave.io',

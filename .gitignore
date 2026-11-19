@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log*
+*.log
+.DS_Store
+.env
+
+# downloaded media / scratch
+*.mp4
+*.mp3
+*.jpg
+*.png
+.tmp/

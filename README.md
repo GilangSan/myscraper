@@ -25,13 +25,21 @@ src/
 └── tools/       # OCR, TTS, currency, wallpaper, dll
 ```
 
-Node ≥ 18. Semua file adalah modul CommonJS yang memakai `require('axios')` (+ `cheerio`/lainnya sesuai kebutuhan). Belum ada `node_modules` yang di-commit; install dependency yang kamu butuhkan sendiri (lihat kolom **package** di tiap tabel).
+Node ≥ 18. Hampir semua file adalah modul CommonJS yang memakai `require('axios')` (+ `cheerio`/lainnya sesuai kebutuhan). Belum ada `node_modules` yang di-commit; install dependency yang kamu butuhkan sendiri (lihat kolom **package** di tiap tabel).
+
+> **Pengecualian:** `src/downloader/grabmp4.mjs` adalah satu-satunya file **ESM** (pakai `import`/`export`) dan **tanpa dependency** (memakai `fetch` global). Import dengan ekstensi file, mis. `import { GrabMP4 } from './src/downloader/grabmp4.mjs'`.
 
 ## Cara pakai
 
 ```js
+// CommonJS (mayoritas file)
 const { getInfo, getVideo, getAudio } = require('./src/downloader/ytdl-grabtheclip.js')
 console.log(await getInfo('https://youtu.be/dQw4w9WgXcQ'))
+
+// ESM, tanpa dependency (grabmp4)
+import { GrabMP4 } from './src/downloader/grabmp4.mjs'
+const gm = new GrabMP4()
+console.log(await gm.downloadVideo('https://youtu.be/dQw4w9WgXcQ', '720'))
 ```
 
 Tiap file punya header `@package` dan contoh `usage` di komentar atas / bawah file.
@@ -94,6 +102,7 @@ Tiap file punya header `@package` dan contoh `usage` di komentar atas / bawah fi
 | `pindl.js` | ssspin.app | `pindl` | axios |
 | `x-twdownloader.js` | twdownloader.com | `x` | axios |
 | `spotify.js` | spotify-down.com | `spotify, spodl` | axios |
+| `grabmp4.mjs` | grabmp4.online | `GrabMP4` class / `info, download, formats, render` | none (ESM, fetch) |
 
 ### `drama/`
 | File | Sumber | Fungsi utama | package |
